@@ -1,2 +1,119 @@
-<h1>Japan 2019!
-</h1>
+<html>
+
+<head>
+  <title>Japan Countdown
+  </title>
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
+
+    body {
+      text-transform: uppercase;
+      font-family: Futura, Trebuchet MS, Arial, sans-serif;
+      display: table;
+      background-image: url("/Japan.png");
+      background-repeat: no-repeat;
+      height: 100%;
+      background-position: center;
+      color: #2E2E2E;
+
+    }
+
+    .my-block {
+      text-align: center;
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    p {
+      font-size: 9px;
+      font-weight: bold;
+      word-spacing: 40px;
+      vertical-align: center;
+      text-align: center;
+      line-height: 0px;
+    }
+
+    span {
+      font-weight: bold;
+      font-size: 24px;
+      vertical-align: center;
+      padding: 20px;
+    }
+
+    .times {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="my-block">
+    <h1>
+      Japan 2019
+    </h1>
+    <div class="times">
+      <div>
+        <span id="days"></span>
+        <p>days</p>
+      </div>
+      <div>
+        <span id="hours"></span>
+        <p>hours</p>
+      </div>
+      <div>
+        <span id="minutes"></span>
+        <p>minutes</p>
+      </div>
+      <div>
+        <span id="seconds"></span>
+        <p>seconds</p>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // load date for japan trip
+      var japan = new Date(2019, 1, 3);
+
+      function setTimeOnPage() {
+        // get today's date
+        var today = new Date();
+
+        // set days
+        var timeDiff = japan.getTime() - today.getTime();
+        var daysUntil = Math.floor(timeDiff / (1000 * 3600 * 24));
+        document.getElementById('days').innerHTML = daysUntil;
+
+        // set hours
+        var totalHoursUntil = Math.floor(timeDiff / (1000 * 3600))
+        document.getElementById('hours').innerHTML = totalHoursUntil - (daysUntil * 24);
+
+        // set minutes
+        var totalMinutesUntil = Math.floor(timeDiff / (1000 * 60));
+        document.getElementById('minutes').innerHTML = totalMinutesUntil - (totalHoursUntil * 60);
+
+        // set seconds
+        var totalSecondsUntil = Math.floor(timeDiff / (1000))
+        document.getElementById('seconds').innerHTML = totalSecondsUntil - (totalMinutesUntil * 60);
+      }
+
+      setTimeOnPage();
+      setInterval(function () {
+        setTimeOnPage();
+      }, 1000);
+    });
+  </script>
+</body>
+
+</html>
